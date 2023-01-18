@@ -16,12 +16,12 @@ function Search(props) {
   };
 
   return (
-    <>
+    <div>
       <Divider>Search</Divider>
 
       <label>Search</label>
       <Input value={foodName} type="text" onChange={handleSelect} />
-    </>
+    </div>
   );
 }
 

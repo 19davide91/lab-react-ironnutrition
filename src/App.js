@@ -7,9 +7,23 @@ import Search from './components/Search';
 
 function App() {
   const [theFood, setTheFood] = useState(foods);
+  const [search, setSearch] = useState(foods);
+
+  const searchFood = str => {
+    let searchedFood;
+    if (str === '') {
+      searchedFood = search;
+    } else {
+      searchedFood = search.filter(movie => {
+        return movie.title[0].toLowerCase() === str.toLowerCase();
+      });
+    }
+    setTheFood(searchedFood);
+  };
+
   return (
     <div className="App">
-      <Search />
+      <Search searchFood={searchFood} />
       <AddFoodForm theFood={theFood} setTheFood={setTheFood} />
       <FoodBox
         food={{
