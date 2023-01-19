@@ -1,40 +1,21 @@
-// Remember to import Ant Design components before using them.
-import 'antd/dist/reset.css';
-import { useState } from 'react';
+import { Card, Col, Button } from 'antd';
 
 // Iteration 2
 function FoodBox(props) {
-  const { image, name, calories } = props.eachFoodProps;
-  const [quantity, setQuantity] = useState(1);
-
-  const handleChange = event => {
-    setQuantity(event.target.value);
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    props.addToConsumedCalories({ name, calories, quantity });
-  };
-
+  const { food } = props;
+  const { name, image, calories, servings } = food;
   return (
-    <div>
-      <img src={image} alt={image} width="100px" />
-
-      <p>
-        <strong>{name}</strong> <br />
-        <small>{calories} cal</small>
-      </p>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          name="quantity"
-          value={quantity}
-          onChange={handleChange}
-        />
-        <button> + </button>
-      </form>
-    </div>
+    <Col>
+      <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>
+        <img src={image} height={60} alt="food" />
+        <p>Calories: {calories}</p>
+        <p>Servings: {servings}</p>
+        <p>
+          <b>Total Calories: {calories * servings} </b> kcal
+        </p>
+        <Button type="primary"> Delete </Button>
+      </Card>
+    </Col>
   );
 }
 
